@@ -14,7 +14,7 @@ We manually painted the intersection part of the plane to get the calibration si
 ```
 > [Ipoints Wpoints]=findpoints768686(Iin,sg,pk)
 ```
-where Iin is the RGB image, sg is sigma value we used it sg=2, and pk is peakThreshold value we selected it 0.15 in our test. It return world plane point location and image plane point locations. Please note that function was written hard coded manner. But you can easily change it according to your demands.
+where Iin is the RGB image, sg is sigma value we used it sg=2, and pk is peakThreshold value we selected it 0.15 in our test. It return world plane point location and image plane point locations. Please note that function was written hard coded manner. But you can easily change it according to your demands. Please note in following figure, you see just unit coordinate. We multiply that unit coordinate to 2.8 where each small square length is 2.8 cm. So our final translation results will be in cm.
 
 ![Sample image](Outputs/lr.jpg?raw=true "Title")
 
