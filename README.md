@@ -159,7 +159,7 @@ Here you saw x,y,z position of both cameras. the norm of left camera is around 8
 
 At the end, we can plot groundt truth point positions, calculated positions from stereo camera using triangulation, and both two camera positions as following figure.
 
-![Sample image](Outputs/result.jpg?raw=true "Title")
+![Sample image](Outputs/results.gif?raw=true "Title")
 
 You can run all steps with just one main script as following command.
 ```
