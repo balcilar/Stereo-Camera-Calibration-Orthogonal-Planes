@@ -155,7 +155,7 @@ right camera position
    50.0053
    54.2249
 ```
-Here you saw x,y,z position of both cameras. the norm of left camera is around 81.3 which means it has 81.3cm distance to the reference point (plane intersection point). And if you calculate norm of relative position of cameras you will see there is almost 23 cm differneces between these two cameras.
+Here you saw x,y,z position of both cameras. the norm of left camera is around 81.3 which means it has 81.3cm distance to the reference point (plane intersection point). And if you calculate norm of relative position of cameras you will see there is almost 23 cm differneces between these two cameras which is baseline of our stereo vision system.
 
 At the end, we can plot groundt truth point positions, calculated positions from stereo camera using triangulation, and both two camera positions as following figure.
 
