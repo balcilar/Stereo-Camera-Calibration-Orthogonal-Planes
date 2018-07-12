@@ -159,12 +159,11 @@ It means there are almost 23 cm differneces between these two cameras.
 
 At the end, we can plot groundt truth point positions, calculated positions from stereo camera using triangulation, and both two camera positions as following figure.
 
-![Sample image](Outputs/res.jpg?raw=true "Title")
+![Sample image](Outputs/result.jpg?raw=true "Title")
 
 You can run all steps with just one main script as following command.
 ```
 > main
 ```
 
- 
-## Reference
+
