@@ -10,7 +10,13 @@ The main issue of this task is find all necessary point and their world plane po
 
 ![Sample image](Inputs/left_calib.jpg?raw=true "Title")
 
-We manually painted the intersection part of the plane to get the calibration size become as how we desing. Please note that does not mean we all need manual painiting. if you use appropriate calibration checkerboard, you wont need any pre-processing. After all we detect all planes, their image plane locations in superpixel resolution and their real word locations as you can see in following figure.
+We manually painted the intersection part of the plane to get the calibration size become as how we desing. Please note that does not mean we all need manual painiting. if you use appropriate calibration checkerboard, you wont need any pre-processing. After all we detect all planes, their image plane locations in superpixel resolution and their real word locations as you can see in following figure. You can find the code that perform this result in following function;
+```
+> [Ipoints Wpoints]=findpoints768686(Iin,sg,pk)
+```
+where Iin is the RGB image, sg is sigma value we used it sg=2, and pk is peakThreshold value we selected it 0.15 in our test. Please note that function was written hard coded manner. But you can easily change it according to your demands.
+
+
 
 ![Sample image](Outputs/lr.jpg?raw=true "Title")
 
