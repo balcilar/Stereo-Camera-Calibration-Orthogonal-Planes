@@ -6,7 +6,10 @@ In this research, we developed fully automatic 3 orthogonal checkerboard calibra
 
 ## Find Calibration Point From 3 Ortogonal Checkerboard Image
 
-The main issue of this task is find all necessary point and their world plane positions automatically. To reach this aim, we make some assumtions, such the X,Y plane checkerboard  should be 7x8 points, Y,Z plane checkerboard should be 8x6 points, and X,Z plane checkerboard should be 6x8 points. In this way we can easily recognize which sensed plane refers which plane. And also in order to prevent some confussion of intersection line of 3 planes, we do not use that the first row of intersection lines.
+The main issue of this task is find all necessary point and their world plane positions automatically. To reach this aim, we make some assumtions, such the X,Y plane checkerboard  should be 7x8 points, Y,Z plane checkerboard should be 8x6 points, and X,Z plane checkerboard should be 6x8 points. In this way we can easily recognize which sensed plane refers which plane. And also in order to prevent some confussion of intersection line of 3 planes, we do not use that the first row of intersection lines. The row image of our left camera image is in following figure.
+
+![Sample image](Inputs/left_calib.jpg?raw=true "Title")
+
 
 
 
