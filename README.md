@@ -10,7 +10,9 @@ The main issue of this task is find all necessary point and their world plane po
 
 ![Sample image](Inputs/left_calib.jpg?raw=true "Title")
 
+We manually painted the intersection part of the plane to get the calibration size become as how we desing. Please note that does not mean we all need manual painiting. if you use appropriate calibration checkerboard, you wont need any pre-processing. After all we detect all planes, their image plane locations in superpixel resolution and their real word locations as you can see in following figure.
 
+![Sample image](Outputs/lr.jpg?raw=true "Title")
 
 
 if you select reference of 
