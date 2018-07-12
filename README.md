@@ -4,7 +4,7 @@ A camera projects 3D world-points onto the 2D image plane. Traditional cameras h
 
 In this research, we developed fully automatic 3 orthogonal checkerboard calibration techniques either mono or stereo camera. Actually we just calculated the extrinsic parameters according to outher reference point which is intersection point of 3 orthogonal plane.
 
-## Find Calibration Point From 3 Ortogonal Checkerboard Image
+## Calibration Point Detection From 3 Ortogonal Checkerboard Image
 
 The main issue of this task is find all necessary point and their world plane positions automatically. To reach this aim, we make some assumtions, such the X,Y plane checkerboard  should be 7x8 points, Y,Z plane checkerboard should be 8x6 points, and X,Z plane checkerboard should be 6x8 points. In this way we can easily recognize which sensed plane refers which plane. And also in order to prevent some confussion of intersection line of 3 planes, we do not use that the first row of intersection lines. The row image of our left camera image is in following figure.
 
@@ -90,7 +90,73 @@ K A and tz are known. So we can take inverse of K matrix and multiply it with ri
 
 Then we can figure out what is the element of R and T easily.
 
+ ## Results
  
+ According to our test we took following R , T, and K values for left camera;
+ 
+ ```
+ R =
+   -0.6882    0.7250    0.0292
+    0.5059    0.5001   -0.7028
+   -0.5241   -0.4689   -0.7109
+   
+T =
+    1.6614
+   -4.7742
+   81.1783
+
+K =  
+
+    1649.4         0    793.3
+         0    1654.1    614.4
+         0         0    1
+ ```
+ 
+ For right camera, we took following output.
+ ```
+ R =
+   -0.9322    0.3617   -0.0112
+    0.2732    0.6621   -0.6979
+   -0.2450   -0.6536   -0.7161
+   
+T =
+    6.6994
+   -2.3526
+   77.8675
+
+K =
+
+    1631.7         0    789.1
+         0    1625.7    634.8
+         0         0    1
+ 
+ ```
+
+To interpret the result we found focal length fx=1631.7, focal lenght fy=1625.7, center of image is (789.1 634.8) for right camera. please note our images has 1200x1600 resolution which means expected center point is (800,600). For extrinsic parameter, we found rotational matrix but it is not understandable for us. To get it more nderstandable, we need to convert it into vector with following comamnd.
+```
+rot = rotationMatrixToVector(R)
+
+     -0.5262   -2.7480    1.1218
+```
+now you can see all rotations for both x, y and z axis respectively for right camera. but what about translation?. So what we know about the position of both left and right camera according to intersection point reference?. To do that we need to run following commmand.
+
+```
+> -inv(R)*T
+
+left camera position
+
+   46.0793
+   39.2640
+   54.3177
+
+right camera position
+
+   25.9359
+   50.0053
+   54.2249
+```
+It means there are almost 23 cm differneces between this to camera.
+
 
 
 
