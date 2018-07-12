@@ -155,7 +155,7 @@ right camera position
    50.0053
    54.2249
 ```
-It means there are almost 23 cm differneces between this to camera.
+It means there are almost 23 cm differneces between these two cameras.
 
 At the end, we can plot groundt truth point positions, calculated positions from stereo camera using triangulation, and both two camera positions as following figure.
 
