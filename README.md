@@ -6,7 +6,7 @@ In this research, we developed fully automatic 3 orthogonal checkerboard calibra
 
 ## Calibration Point Detection From 3 Ortogonal Checkerboard Image
 
-The main issue of this task is find all necessary point and their world plane positions automatically. To reach this aim, we make some assumtions, such the X,Y plane checkerboard  should be 7x8 points, Y,Z plane checkerboard should be 8x6 points, and X,Z plane checkerboard should be 6x8 points. In this way we can easily recognize which sensed plane refers which plane. And also in order to prevent some confussion of intersection line of 3 planes, we do not use that the first row of intersection lines. The row image of our left camera image is in following figure.
+The main issue of this task is find all necessary point and their world plane positions automatically. To reach this aim, we make some assumtions, such the X,Y plane checkerboard  should be 7x6 points, Y,Z plane checkerboard should be 8x6 points, and X,Z plane checkerboard should be 6x8 points. In this way we can easily recognize which sensed plane refers which plane. And also in order to prevent some confussion of intersection line of 3 planes, we do not use that the first row of intersection lines. The row image of our left camera image is in following figure.
 
 ![Sample image](Inputs/left_calib.jpg?raw=true "Title")
 
@@ -155,7 +155,7 @@ right camera position
    50.0053
    54.2249
 ```
-It means there are almost 23 cm differneces between these two cameras.
+Here you saw x,y,z position of both cameras. the norm of left camera is around 81.3 which means it has 81.3cm distance to the reference point (plane intersection point). And if you calculate norm of relative position of cameras you will see there is almost 23 cm differneces between these two cameras.
 
 At the end, we can plot groundt truth point positions, calculated positions from stereo camera using triangulation, and both two camera positions as following figure.
 
