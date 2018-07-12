@@ -103,8 +103,8 @@ tz=1./norm(T2);
 
 % the calibration matrix can be defined as follows.
 % Intrinsic parameter K matrix should be define as follows
-%K=[AlphaU 0 U0;0 AlphaV V0;0 0 1];
-K=[AlphaU 0 800;0 AlphaV 600;0 0 1];
+K=[AlphaU 0 U0;0 AlphaV V0;0 0 1];
+%K=[AlphaU 0 800;0 AlphaV 600;0 0 1];
 
 % Extrinsic parameters are T and R
 RT=inv(K)*bestA*tz;
