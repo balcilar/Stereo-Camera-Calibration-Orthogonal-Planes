@@ -26,7 +26,7 @@ According to Hall algorithm the camera model should be represented by 3x4 matrix
 *A=[a1 a2 a3 a4;a5 a6 a7 a8;a9 a10 a11 1]*
 To calculate 11 unknown element of A, First of all, we should define matrix Q and matrix B as follows.
 
-*Q=[x1 y1 z1 1 0 0 0 0 -px1x1 -px1y1 -px1; z1; 0 0 0 0 x1 y1 z1 1 -py1x1 -py1x1 -py1px1;........;xn yn zn 1 0 0 0 0 -pxnxn -pxnyn -pxnzn; 0 0 0 0 xn yn zn 1 -pynxn -pynxn -pynzn]*
+*Q=[x1 y1 z1 1 0 0 0 0 -px1x1 -px1y1 -px1z1; 0 0 0 0 x1 y1 z1 1 -py1x1 -py1y1 -py1z1;........;xn yn zn 1 0 0 0 0 -pxnxn -pxnyn -pxnzn; 0 0 0 0 xn yn zn 1 -pynxn -pynyn -pynzn]*
 
 
 As above equation Q matrix have to has *2n* rows and 11 columns. Subsequent two rows is belongs to the certain order fo data points. For instance first 2 rows are for 1st element, 3 and 4 th rows are for 2nd element and so on so forth.  In that equation *n* is the number of points which we know the correspondence of those points both 3d location and their image plane locations.
