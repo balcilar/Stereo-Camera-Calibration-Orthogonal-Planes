@@ -67,8 +67,8 @@ Lcam=K2*[R2 T2];
 [points3d] = mytriangulate(Ipoints, IpointsR, Rcam,Lcam );
 plot3(points3d(:,1),points3d(:,2),points3d(:,3),'r.')
 
-CL=-inv(R)*T;
-CR=-inv(R2)*T2;
+CL=-R'*T;
+CR=-R2'*T2;
 plot3(CR(1),CR(2),CR(3),'gs');
 plot3(CL(1),CL(2),CL(3),'cs');
 axis equal
@@ -76,10 +76,6 @@ legend({'ground truth point locations','Calculated point locations','Right Camer
 
 
 
-
-
-
-
-
-
-
+% relative transformation from left one to right camera 
+RR=R2*R'
+TT=T2-RR*T
