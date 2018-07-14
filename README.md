@@ -138,10 +138,10 @@ rot = rotationMatrixToVector(R)
 
      -0.5262   -2.7480    1.1218
 ```
-now you can see all rotations for both x, y and z axis respectively for right camera. but what about translation?. So what we know about the position of both left and right camera according to intersection point reference?. To do that we need to run following commmand.
+now you can see all rotations for both x, y and z axis respectively for right camera. but what about translation?. So what we know about the position of both left and right camera according to intersection point reference?. Since referencePoint(0,0,0)= R*Camera+T, So Camera=-R'*T. To do that we need to run following commmand.
 
 ```
-> -inv(R)*T
+> -R'*T
 
 left camera position
 
@@ -155,6 +155,24 @@ right camera position
    50.0053
    54.2249
 ```
+You can see relative transformation from Left camera to the right camera with following commands.
+
+``` 
+RR=R2*R'
+TT=T2-RR*T
+
+RR =
+    0.9038   -0.2757    0.3275
+    0.2804    0.9593    0.0336
+   -0.3234    0.0615    0.9443
+TT =
+
+ -22.92279
+  -1.74840
+   3.81712
+ ```
+Also in that expression please note that TT variable means translation from left to right and its norm is the same almost 23 which menas the cameras have 23 cm baseline again.
+
 Here you saw x,y,z position of both cameras. the norm of left camera is around 81.3 which means it has 81.3cm distance to the reference point (plane intersection point). And if you calculate norm of relative position of cameras you will see there is almost 23 cm differneces between these two cameras which is baseline of our stereo vision system.
 
 At the end, we can plot groundt truth point positions, calculated positions from stereo camera using triangulation, and both two camera positions as following figure.
