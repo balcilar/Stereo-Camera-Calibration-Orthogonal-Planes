@@ -208,7 +208,7 @@ To show how we can find epipolar line on right image for pixel of (218,398) posi
 > plot(spx,spy,'b-','linewidth',4);
   ```
 
-We know all rotations and translation. also we know the query point on the left is on y=0 plane. Within th eepipolar line we know that query points on that line, but can we calculate its exact position?. Within the knowledge of that point is on y=0 plane, we can do it. Suppose *H=K1*[R1 T1]* and it is 3x4 matrix. we assume all elemen of H is h11 , h12 ..to h34. So if query point location is [X;0;Z] we can write following equation.
+We know all rotations and translation. also we know the query point on the left is on y=0 plane. Within th eepipolar line we know that query points on that line, but can we calculate its exact position?. Within the knowledge of that point is on y=0 plane, we can do it. Suppose *H=K1x[R1 T1]* and H is 3x4 matrix. we assume all elemen of H is h11 , h12 ..to h34. So if query point location is [X;0;Z] we can write following equation.
 
 *λ[218;398;1]=Hx[X;0;Z;1]*
 
@@ -216,7 +216,7 @@ Since 2nd elemen of world coord vector is 0 and last one is 1 as known parameter
 
 *λ[218;398;1] -[h14;h14;h34]=[h11 h13;h21 h23;h31 h33]x[X;Z]*
 
-since we do not know λ there are X,Y, λ unknow variable and we collect them on the left and rewrite them as a matrix form as follows.
+since we do not know λ, there are X,Y, λ unknow variable and we collect them on the left and rewrite them as a matrix form as follows.
 
 * -[h14;h14;h34]=[h11 h13 -218;h21 h23 -398;h31 h33 -1]x[X;Z;λ]*
 
@@ -228,7 +228,7 @@ So within that calculation, we found X and Z, as we know Y=0, so it is quite eas
 
 * [λpx;λpy;λ]=K2*[R2 T2]*[X;0;Y;1] *
 
-note we should divide λpx and λpy to λ to find exact pixel point. here is how we calculate it in matlab and found point on image.
+note we should divide λpx and λpy to λ to find exact pixel position. here is how we calculate it in matlab and find point on image.
 
  ```
 H=K1*[R1 T1];
@@ -240,7 +240,7 @@ q=K2*[R2 T2]*[W;1]
 ip=q/q(3);
 plot(ip(1),ip(2),'r*','MarkerSize',10);
  ```
-Here is the query point of the left camera image, its epipolar line on the right camera image and assumption of this point on Y=0 plane, its exact position on right image. as you can see the epipolar line is not parallel, the cameras were not mounted at the same straigth line properly.
+Here is the query point of the left camera image, its epipolar line on the right camera image and assumption of this point on Y=0 plane, its exact position on right image. as you can see the epipolar line is not parallel,that is because the cameras were not mounted at the same straigth line properly.
 
 ![Sample image](Outputs/epipolarline.jpg?raw=true "Title")
 
