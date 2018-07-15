@@ -222,7 +222,7 @@ since we do not know λ there are X,Y, λ unknow variable and we collect them on
 
 now we can calculate unknow part with matrix inversion as follows.
 
-* [X;Z;λ] =  -  inv([h11 h13 -218;h21 h23 -398;h31 h33 -1])x[h14;h14;h34]*
+* [X;Z;λ] =  -  inv([h11 h13 -218;h21 h23 -398;h31 h33 -1])x[h14;h24;h34]*
 
 So within that calculation, we found X and Z, as we know Y=0, so it is quite easy to calculate any X,Y,Z world coordinate point to the right image coordinate as follows;
 
