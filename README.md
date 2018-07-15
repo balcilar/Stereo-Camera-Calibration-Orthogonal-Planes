@@ -95,17 +95,17 @@ Then we can figure out what is the element of R and T easily.
  According to our test we took following R , T, and K values for left camera;
  
  ```
- R =
+ R1 =
    -0.6882    0.7250    0.0292
     0.5059    0.5001   -0.7028
    -0.5241   -0.4689   -0.7109
    
-T =
+T1 =
     1.6614
    -4.7742
    81.1783
 
-K =  
+K1 =  
 
     1649.4         0    793.3
          0    1654.1    614.4
@@ -114,17 +114,17 @@ K =
  
  For right camera, we took following output.
  ```
- R =
+ R2 =
    -0.9322    0.3617   -0.0112
     0.2732    0.6621   -0.6979
    -0.2450   -0.6536   -0.7161
    
-T =
+T2 =
     6.6994
    -2.3526
    77.8675
 
-K =
+K2 =
 
     1631.7         0    789.1
          0    1625.7    634.8
@@ -134,14 +134,15 @@ K =
 
 To interpret the result we found focal length fx=1631.7, focal lenght fy=1625.7, center of image is (789.1 634.8) for right camera. please note our images has 1200x1600 resolution which means expected center point is (800,600). For extrinsic parameter, we found rotational matrix but it is not understandable for us. To get it more nderstandable, we need to convert it into vector with following comamnd.
 ```
-rot = rotationMatrixToVector(R)
+rot = rotationMatrixToVector(R1)
 
      -0.5262   -2.7480    1.1218
 ```
 now you can see all rotations for both x, y and z axis respectively for right camera. but what about translation?. So what we know about the position of both left and right camera according to intersection point reference?. Since referencePoint(0,0,0)= R*Camera+T, So Camera=-R'*T. To do that we need to run following commmand.
 
 ```
-> -R'*T
+> -R1'*T2
+> -R2'*T2
 
 left camera position
 
@@ -158,14 +159,14 @@ right camera position
 You can see relative transformation from Left camera to the right camera with following commands.
 
 ``` 
-RR=R2*R'
-TT=T2-RR*T
+R=R2*R1'
+T=T2-R*T1
 
-RR =
+R =
     0.9038   -0.2757    0.3275
     0.2804    0.9593    0.0336
    -0.3234    0.0615    0.9443
-TT =
+T =
 
  -22.92279
   -1.74840
@@ -178,6 +179,38 @@ Here you saw x,y,z position of both cameras. the norm of left camera is around 8
 At the end, we can plot groundt truth point positions, calculated positions from stereo camera using triangulation, and both two camera positions as following figure.
 
 ![Sample image](Outputs/results.gif?raw=true "Title")
+
+Fundamental and Essential matrixes are so important to find epipolar line. Here is how we calculated these matrix and their results.
+ 
+ ```
+> tx = [0 -T(3) T(2); T(3) 0 -T(1); -T(2) T(1) 0];
+> E = tx * R
+> F = K2' \ E /  K1
+ 
+E =
+   -0.1029  -20.2744  -16.3279
+  -59.5467    8.1424  224.3821
+  -50.0707 -226.5122   -3.5875
+
+F =
+   -0.0000   -0.0000   -0.0053
+   -0.0000    0.0000    0.1528
+   -0.0159   -0.1317   10.1045
+  ```
+To show how we can find epipolar line on right image for pixel of (218,398) position in left image here is the given command and found epipolar line
+
+  ```
+lf=F*[218;398;1];
+% show that line on to right image
+spx=[1 size(IinR,2)];
+spy(1,1)=(-lf(3)-lf(1)*spx(1))/lf(2);
+spy(1,2)=(-lf(3)-lf(1)*spx(2))/lf(2);
+figure;imagesc(IinR);hold on;
+plot(spx,spy,'b-','linewidth',4);
+  ```
+
+
+
 
 You can run all steps with just one main script as following command.
 ```
