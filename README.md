@@ -207,11 +207,44 @@ To show how we can find epipolar line on right image for pixel of (218,398) posi
 > figure;imagesc(IinR);hold on;
 > plot(spx,spy,'b-','linewidth',4);
   ```
-Here is the query point of the left camera image and its epipolar line on the right camera image. as you can see the epipolar line is not parallel, the cameras were not mounted at the same straigth line properly.
 
-![Sample image](Outputs/epipolar.jpg?raw=true "Title")
+We know all rotations and translation. also we know the query point on the left is on y=0 plane. Within th eepipolar line we know that query points on that line, but can we calculate its exact position?. Within the knowledge of that point is on y=0 plane, we can do it. Suppose *H=K1*[R1 T1]* and it is 3x4 matrix. we assume all elemen of H is h11 , h12 ..to h34. So if query point location is [X;0;Z] we can write following equation.
 
+*λ[218;398;1]=Hx[X;0;Z;1]*
 
+Since 2nd elemen of world coord vector is 0 and last one is 1 as known parameter we rewrite the equation as follows;
+
+*λ[218;398;1] -[h14;h14;h34]=[h11 h13;h21 h23;h31 h33]x[X;Z]*
+
+since we do not know λ there are X,Y, λ unknow variable and we collect them on the left and rewrite them as a matrix form as follows.
+
+* -[h14;h14;h34]=[h11 h13 -218;h21 h23 -398;h31 h33 -1]x[X;Z;λ]*
+
+now we can calculate unknow part with matrix inversion as follows.
+
+* [X;Z;λ] =  -  inv([h11 h13 -218;h21 h23 -398;h31 h33 -1])x[h14;h14;h34]*
+
+So within that calculation, we found X and Z, as we know Y=0, so it is quite easy to calculate any X,Y,Z world coordinate point to the right image coordinate as follows;
+
+* [λpx;λpy;λ]=K2*[R2 T2]*[X;0;Y;1] *
+
+note we should divide λpx and λpy to λ to find exact pixel point. here is how we calculate it in matlab and found point on image.
+
+ ```
+H=K1*[R1 T1];
+w=inv([H(:,1) H(:,3) -[218;398;1]])*-H(:,4);
+W(1,1)=w(1);
+W(2,1)=0;
+W(3,1)=w(2);
+q=K2*[R2 T2]*[W;1]
+ip=q/q(3);
+plot(ip(1),ip(2),'r*','MarkerSize',10);
+ ```
+Here is the query point of the left camera image, its epipolar line on the right camera image and assumption of this point on Y=0 plane, its exact position on right image. as you can see the epipolar line is not parallel, the cameras were not mounted at the same straigth line properly.
+
+![Sample image](Outputs/epipolarline.jpg?raw=true "Title")
+
+ 
 You can run all steps with just one main script as following command.
 ```
 > main
