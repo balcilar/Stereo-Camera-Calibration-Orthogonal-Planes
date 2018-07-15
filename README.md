@@ -200,16 +200,16 @@ F =
 To show how we can find epipolar line on right image for pixel of (218,398) position in left image here is the given command and found epipolar line
 
   ```
-lf=F*[218;398;1];
-% show that line on to right image
-spx=[1 size(IinR,2)];
-spy(1,1)=(-lf(3)-lf(1)*spx(1))/lf(2);
-spy(1,2)=(-lf(3)-lf(1)*spx(2))/lf(2);
-figure;imagesc(IinR);hold on;
-plot(spx,spy,'b-','linewidth',4);
+> lf=F*[218;398;1];
+> spx=[1 size(IinR,2)];
+> spy(1,1)=(-lf(3)-lf(1)*spx(1))/lf(2);
+> spy(1,2)=(-lf(3)-lf(1)*spx(2))/lf(2);
+> figure;imagesc(IinR);hold on;
+> plot(spx,spy,'b-','linewidth',4);
   ```
+Here is the query point of the left camera image and its epipolar line on the right camera image. as you can see the epipolar line is not parallel, the cameras were not mounted at the same straigth line properly.
 
-
+![Sample image](Outputs/epipolar.jpg?raw=true "Title")
 
 
 You can run all steps with just one main script as following command.
