@@ -18,7 +18,7 @@ where Iin is the RGB image, sg is sigma value we used it sg=2, and pk is peakThr
 
 ![Sample image](Outputs/lr.jpg?raw=true "Title")
 
-## Calibration with RANSAC minimization with HALL Algorithm
+## Calibration with RANSAC minimization by HALL Algorithm
 
 Assume we say ith point’s real world coordinate is *[xi,yi,zi]* and its camera image plane pixel locations is  *[pxi,pyi]*.
 According to Hall algorithm the camera model should be represented by 3x4 matrix A, whose bottom left element is 1.  So, we can define calibration matrix as followings.
